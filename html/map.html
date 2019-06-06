@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sunny Weather Travel</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <!--Bootsrap 4 CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!--Fontawesome CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <!--Custom styles-->
+    <link rel="stylesheet" type="text/css" href="../css/sunnystyle.css">
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div class="col-md-12">
+    <h1>Formfelder werden hier oben angezeigt</h1>
+</div>
+<div id="map"></div>
+<div id="content">
+    Hello world!
+</div>
+<div class="col-md-12">
+    <h1>Details</h1>
+</div>
+<script>
+    var locationData = [
+            {
+                "city": "Berlin",
+                "admin": "Berlin",
+                "country": "Germany",
+                "population_proper": "3094014",
+                "iso2": "DE",
+                "capital": "primary",
+                "lat": "52.516667",
+                "lng": "13.4",
+                "population": "3406000"
+            },
+            {
+                "city": "Stuttgart",
+                "admin": "Baden-Württemberg",
+                "country": "Germany",
+                "population_proper": "606588",
+                "iso2": "DE",
+                "capital": "admin",
+                "lat": "48.782343",
+                "lng": "9.180819",
+                "population": "2944700"
+            },
+            {
+                "city": "Frankfurt",
+                "admin": "Hesse",
+                "country": "Germany",
+                "population_proper": "679664",
+                "iso2": "DE",
+                "capital": "minor",
+                "lat": "50.11552",
+                "lng": "8.684167",
+                "population": "2895000"
+            },
+            {
+                "city": "Mannheim",
+                "admin": "Baden-Württemberg",
+                "country": "Germany",
+                "population_proper": "313174",
+                "iso2": "DE",
+                "capital": "minor",
+                "lat": "49.496706",
+                "lng": "8.479547",
+                "population": "2362000"
+            },
+            {
+                "city": "Hamburg",
+                "admin": "Hamburg",
+                "country": "Germany",
+                "population_proper": "1739117",
+                "iso2": "DE",
+                "capital": "admin",
+                "lat": "53.575323",
+                "lng": "10.01534",
+                "population": "1757000"
+            },
+            {
+                "city": "Essen",
+                "admin": "North Rhine-Westphalia",
+                "country": "Germany",
+                "population_proper": "573468",
+                "iso2": "DE",
+                "capital": "minor",
+                "lat": "51.45657",
+                "lng": "7.012282",
+                "population": "1742135"
+            },
+            {
+                "city": "Duisburg",
+                "admin": "North Rhine-Westphalia",
+                "country": "Germany",
+                "population_proper": "488005",
+                "iso2": "DE",
+                "capital": "minor",
+                "lat": "51.432469",
+                "lng": "6.765161",
+                "population": "1276757"
+            },
+            {
+                "city": "Munich",
+                "admin": "Bavaria",
+                "country": "Germany",
+                "population_proper": "1260391",
+                "iso2": "DE",
+                "capital": "admin",
+                "lat": "48.15",
+                "lng": "11.583333",
+                "population": "1275000"
+            },
+            {
+                "city": "Düsseldorf",
+                "admin": "North Rhine-Westphalia",
+                "country": "Germany",
+                "population_proper": "592393",
+                "iso2": "DE",
+                "capital": "admin",
+                "lat": "51.228304",
+                "lng": "6.793849",
+                "population": "1220000"
+            },
+            {
+                "city": "Cologne",
+                "admin": "North Rhine-Westphalia",
+                "country": "Germany",
+                "population_proper": "963395",
+                "iso2": "DE",
+                "capital": "",
+                "lat": "50.933333",
+                "lng": "6.95",
+                "population": "1004000"
+            },
+            {
+                "city": "Wuppertal",
+                "admin": "North Rhine-Westphalia",
+                "country": "Germany",
+                "population_proper": "349470",
+                "iso2": "DE",
+                "capital": "minor",
+                "lat": "51.270268",
+                "lng": "7.167553",
+                "population": "776525"
+            },
+            {
+                "city": "Saarbrücken",
+                "admin": "Saarland",
+                "country": "Germany",
+                "population_proper": "175741",
+                "iso2": "DE",
+                "capital": "admin",
+                "lat": "49.235396",
+                "lng": "6.981646",
+                "population": "770001"
+            },
+            {
+                "city": "Marienberg",
+                "admin": "Bavaria",
+                "country": "Germany",
+                "population_proper": "499237",
+                "iso2": "DE",
+                "capital": "",
+                "lat": "49.486021",
+                "lng": "11.086156",
+                "population": "737304"
+            },
+            {
+                "city": "Bremen",
+                "admin": "Bremen",
+                "country": "Germany",
+                "population_proper": "546501",
+                "iso2": "DE",
+                "capital": "admin",
+                "lat": "53.073789",
+                "lng": "8.826754",
+                "population": "724909"
+            },
+            {
+                "city": "Hannover",
+                "admin": "Lower Saxony",
+                "country": "Germany",
+                "population_proper": "515140",
+                "iso2": "DE",
+                "capital": "admin",
+                "lat": "52.38497",
+                "lng": "9.737141",
+                "population": "722490"
+            },
+            {
+                "city": "Bonn",
+                "admin": "North Rhine-Westphalia",
+                "country": "Germany",
+                "population_proper": "313125",
+                "iso2": "DE",
+                "capital": "minor",
+                "lat": "50.73438",
+                "lng": "7.095485",
+                "population": "680543"
+            },
+            {
+                "city": "Dresden",
+                "admin": "Saxony",
+                "country": "Germany",
+                "population_proper": "486854",
+                "iso2": "DE",
+                "capital": "admin",
+                "lat": "51.048562",
+                "lng": "13.745794",
+                "population": "617515"
+            },
+            {
+                "city": "Wiesbaden",
+                "admin": "Hesse",
+                "country": "Germany",
+                "population_proper": "272432",
+                "iso2": "DE",
+                "capital": "admin",
+                "lat": "50.082582",
+                "lng": "8.249322",
+                "population": "617126"
+            },
+            {
+                "city": "Dortmund",
+                "admin": "North Rhine-Westphalia",
+                "country": "Germany",
+                "population_proper": "588462",
+                "iso2": "DE",
+                "capital": "minor",
+                "lat": "51.514942",
+                "lng": "7.465997",
+                "population": "588462"
+            },
+            {
+                "city": "Leipzig",
+                "admin": "Saxony",
+                "country": "Germany",
+                "population_proper": "504971",
+                "iso2": "DE",
+                "capital": "minor",
+                "lat": "51.34419",
+                "lng": "12.386504",
+                "population": "542529"
+            },
+            {
+                "city": "Heidelberg",
+                "admin": "Baden-Württemberg",
+                "country": "Germany",
+                "population_proper": "143345",
+                "iso2": "DE",
+                "capital": "minor",
+                "lat": "49.404123",
+                "lng": "8.683733",
+                "population": "426590"
+            },
+            {
+                "city": "Karlsruhe",
+                "admin": "Baden-Württemberg",
+                "country": "Germany",
+                "population_proper": "283799",
+                "iso2": "DE",
+                "capital": "minor",
+                "lat": "49.009365",
+                "lng": "8.40444",
+                "population": "377487"
+            },
+            {
+                "city": "Augsburg",
+                "admin": "Bavaria",
+                "country": "Germany",
+                "population_proper": "259196",
+                "iso2": "DE",
+                "capital": "minor",
+                "lat": "48.371538",
+                "lng": "10.898514",
+                "population": "358989"
+            },
+            {
+                "city": "Bielefeld",
+                "admin": "North Rhine-Westphalia",
+                "country": "Germany",
+                "population_proper": "291573",
+                "iso2": "DE",
+                "capital": "minor",
+                "lat": "52.028332",
+                "lng": "8.542002",
+                "population": "331906"
+            },
+            {
+                "city": "Koblenz",
+                "admin": "Rhineland-Palatinate",
+                "country": "Germany",
+                "population_proper": "107319",
+                "iso2": "DE",
+                "capital": "minor",
+                "lat": "50.353573",
+                "lng": "7.578835",
+                "population": "312633"
+            },
+            {
+                "city": "Altchemnitz",
+                "admin": "Saxony",
+                "country": "Germany",
+                "population_proper": "247220",
+                "iso2": "DE",
+                "capital": "",
+                "lat": "50.811536",
+                "lng": "12.912827",
+                "population": "302643"
+            }
+        ];
+
+
+
+    var map, popup, Popup;
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 49.487457, lng: 8.466040},
+            zoom: 6
+        });
+       // Popup = createPopupClass();
+        for (var i = 0; i < locationData.length; i++){
+
+        /*   var popup = new Popup(
+                new google.maps.LatLng(locations[i].lat, locations[i].lng),
+                document.getElementById('content'));
+            popup.setMap(map); */
+
+            var lat = locationData[i].lat;
+            var lng = locationData[i].lng;
+            var city = locationData[i].city;
+
+            var geodata = {
+                lat: parseFloat(lat),
+                lng: parseFloat(lng)
+            };
+
+
+        var marker = new google.maps.Marker({
+            position: geodata,
+            map: map,
+            title: city,
+        })
+
+        };
+
+
+
+    }
+
+    function createPopupClass() {
+
+        function Popup(position, content) {
+            this.position = position;
+
+            content.classList.add('popup-bubble');
+
+            // This zero-height div is positioned at the bottom of the bubble.
+            var bubbleAnchor = document.createElement('div');
+            bubbleAnchor.classList.add('popup-bubble-anchor');
+            bubbleAnchor.appendChild(content);
+
+            // This zero-height div is positioned at the bottom of the tip.
+            this.containerDiv = document.createElement('div');
+            this.containerDiv.classList.add('popup-container');
+            this.containerDiv.appendChild(bubbleAnchor);
+
+            // Optionally stop clicks, etc., from bubbling up to the map.
+            google.maps.OverlayView.preventMapHitsAndGesturesFrom(this.containerDiv);
+        }
+
+        // ES5 magic to extend google.maps.OverlayView.
+        Popup.prototype = Object.create(google.maps.OverlayView.prototype);
+
+        /** Called when the popup is added to the map. */
+        Popup.prototype.onAdd = function () {
+            this.getPanes().floatPane.appendChild(this.containerDiv);
+        };
+
+        /** Called when the popup is removed from the map. */
+        Popup.prototype.onRemove = function () {
+            if (this.containerDiv.parentElement) {
+                this.containerDiv.parentElement.removeChild(this.containerDiv);
+            }
+        };
+
+        /** Called each frame when the popup needs to draw itself. */
+        Popup.prototype.draw = function () {
+            var divPosition = this.getProjection().fromLatLngToDivPixel(this.position);
+
+            // Hide the popup when it is far out of view.
+            var display =
+                Math.abs(divPosition.x) < 4000 && Math.abs(divPosition.y) < 4000 ?
+                    'block' :
+                    'none';
+
+            if (display === 'block') {
+                this.containerDiv.style.left = divPosition.x + 'px';
+                this.containerDiv.style.top = divPosition.y + 'px';
+            }
+            if (this.containerDiv.style.display !== display) {
+                this.containerDiv.style.display = display;
+            }
+        };
+
+        return Popup;
+    }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMBJJh6ExL_fW0pArMaismgeqdh1OBGIY&callback=initMap"
+        async defer></script>
+</body>
+</html>
