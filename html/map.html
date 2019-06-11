@@ -18,21 +18,32 @@
 </head>
 <body>
 
-<div class="col-md-12">
-    <h1>Formfelder werden hier oben angezeigt</h1>
-</div>
+<div class="container">
+    <div class="row">
+        <div class="col-offset-2 col-md-8">
+            <form>
+                <div class="row">
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" placeholder="First name">
+                    </div>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" placeholder="Last name">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
 <div id="map"></div>
-<div id="content">
-    Hello world!
-</div>
+
 <div class="col-md-12">
     <h1>Details</h1>
 </div>
+</div>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script>
-    //var locationData =
-
-
 
     var map, popup, Popup;
 
@@ -43,19 +54,7 @@
         });
        // Popup = createPopupClass();
 
-        //Schleife, die alle Marker auf die jeweiligen Städte stzt
-        //Ajax-Aufruf, um die Daten (Stadtnamen) dynamisch aus dem Backend zu holen
-
-
-        /*$.ajax({
-            method: "POST",
-            url: "some.php",
-            data: { name: "John", location: "Boston" }
-        })
-            .done(function( msg ) {
-                alert( "Data Saved: " + msg );
-            }); */
-        $.ajax({url: "../dummy.json", success: function(locationData){
+        $.ajax({url: "http://localhost:8080/api/test2/largeCities", success: function(locationData){
 
                 for (var i = 0; i < locationData.length; i++){
                     console.log(locationData[i]);
@@ -85,13 +84,6 @@
                 new google.maps.LatLng(locations[i].lat, locations[i].lng),
                 document.getElementById('content'));
             popup.setMap(map); */
-
-
-
-
-
-
-
 
     }
 
@@ -149,7 +141,6 @@
                 this.containerDiv.style.display = display;
             }
         };
-
         return Popup;
     }
 
