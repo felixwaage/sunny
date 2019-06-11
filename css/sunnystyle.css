@@ -176,3 +176,8 @@ input:focus{
     /* The max width of the info window. */
     width: 200px;
 }
+
+#myInputautocomplete-list {
+    max-height: 220px;
+    overflow: auto;
+}
