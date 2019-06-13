@@ -15,7 +15,8 @@
     <link rel="stylesheet" type="text/css" href="../css/sunnystyle.css">
 </head>
 
-<body>
+<body >
+<div id="dvImage"></div>
 <div class="container">
     <div class="d-flex justify-content-center h-100">
         <div class="card">
@@ -46,6 +47,23 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
 <script>
+    var images = ["Sandsteingebirge.jpg", "Schloss.jpg", "Dresden.jpg", "Nordsee.jpg", "Koenigssee.jpg"];
+        $(function () {
+            var i = 0;
+            $("#dvImage").css("background-image", "url(../img/" + images[i] + ")");
+            setInterval(function () {
+                i++;
+                if (i == images.length) {
+                    i = 0;
+                }
+                $("#dvImage").fadeOut("slow", function () {
+                    $(this).css("background-image", "url(../img/" + images[i] + ")");
+                    $(this).fadeIn("slow");
+                });
+            }, 4000);
+        });
+
+
     function autocomplete(inp, arr) {
         /*the autocomplete function takes two arguments,
         the text field element and an array of possible autocompleted values:*/

@@ -1,16 +1,27 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html,body{
-    background-image: url('../img/background.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-color: rgba(36, 33, 33, 0.856);
     height: 100%;
     font-family: 'Numans', sans-serif;
+    position: relative;
 }
 
 .container{
     height: 100%;
     align-content: center;
+}
+
+#mapContainer{
+    background-color: white;
+}
+
+#dvImage{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .card{
